@@ -15,6 +15,7 @@ sealed class AddAssetEvent {
 }
 
 data class CurrencyUiModel(
+    val code: String,
     val from: String,
     val to: String,
     val url: String,

@@ -51,8 +51,9 @@ class AddAssetViewModel @Inject constructor(
                 val selectedItems = selectedCurrenciesFlow.value
                 val uiList = currencyList.map { currency ->
                     CurrencyUiModel(
-                        from = currency.code,
-                        to = "USD",
+                        code = currency.code,
+                        from = currency.name,
+                        to = USD_CODE,
                         url = currency.imageUrl,
                         isSelected = selectedItems.any { it.currencyPair.first == currency.name }
                     )
@@ -95,10 +96,14 @@ class AddAssetViewModel @Inject constructor(
     private fun selectCurrency(model: CurrencyUiModel) {
         viewModelScope.launch {
             if (model.isSelected) {
-                removeCurrencyUseCase(model.to to "USD")
+                removeCurrencyUseCase(model.from to USD_CODE)
             } else {
-                addCurrencyUseCase(model.to to "USD")
+                addCurrencyUseCase(model.from to USD_CODE)
             }
         }
+    }
+
+    companion object {
+        private const val USD_CODE = "USD"
     }
 }

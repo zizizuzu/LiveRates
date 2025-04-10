@@ -53,7 +53,7 @@ fun CurrencyItem(
         ) {
             Text(
                 modifier = Modifier.padding(top = 4.dp),
-                text = model.from,
+                text = model.code,
                 fontSize = 26.sp,
                 maxLines = 1
             )

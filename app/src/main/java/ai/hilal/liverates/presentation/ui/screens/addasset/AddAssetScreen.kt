@@ -35,7 +35,7 @@ fun AddAssetScreen(
             state.isLoading -> LoadingState()
             state.error != null -> ErrorState(state.error!!)
             else -> CurrencyList(
-                currencies = state.filteredCurrencies,
+                models = state.filteredCurrencies,
                 onClick = { currency ->
                     viewModel.handleEvent(AddAssetEvent.OnCurrencySelected(currency))
                 }

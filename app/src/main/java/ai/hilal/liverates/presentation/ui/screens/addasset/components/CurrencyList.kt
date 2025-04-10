@@ -1,7 +1,6 @@
 package ai.hilal.liverates.presentation.ui.screens.addasset.components
 
 import ai.hilal.liverates.presentation.ui.screens.addasset.CurrencyUiModel
-import ai.hilal.liverates.presentation.ui.screens.addasset.FIAT_CURRENCY_TYPE
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,7 +11,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CurrencyList(
-    currencies: List<CurrencyUiModel>,
+    models: List<CurrencyUiModel>,
     onClick: (CurrencyUiModel) -> Unit,
 ) {
     LazyColumn(
@@ -20,8 +19,8 @@ fun CurrencyList(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(currencies.size) { index ->
-            val currency = currencies[index]
+        items(models.size, {models[it].from}) { index ->
+            val currency = models[index]
             CurrencyItem(
                 model = currency,
                 onClick = onClick
